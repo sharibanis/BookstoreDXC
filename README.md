@@ -1,2 +1,2 @@
 # BookstoreDXC
-Bookstore API for DXC Assessment 
+Bookstore REST API for DXC Assessment 
