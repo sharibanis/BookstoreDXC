@@ -1,7 +1,9 @@
-db\sharib\RESTService.class
-db\sharib\NACEApplication.class
-db\sharib\NACE.class
-db\sharib\NACERepository.class
-db\sharib\SpringFoxConfig.class
-db\sharib\RESTController.class
+db\sharib\Books.class
+db\sharib\BookstoreApplication.class
+db\sharib\AuthorsRepository.class
+db\sharib\Authors.class
 db\sharib\InitAndLoadDatabase.class
+db\sharib\BooksRepository.class
+db\sharib\AuthenticationEvents.class
+db\sharib\RESTController.class
+db\sharib\SecurityConfig.class

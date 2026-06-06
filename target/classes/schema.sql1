@@ -1,13 +1,16 @@
-CREATE TABLE nace (
-	OrderNumber bigint not null, 
-	Code varchar(255), 
-	Description varchar(255), 
-	Level varchar(255), 
-	Parent varchar(255), 
-	ReferenceToISICRev4 varchar(255), 
-	Rulings varchar(255), 
-	ThisItemAlsoIncludes varchar(255), 
-	ThisItemExcludes varchar(255), 
-	ThisItemIncludes varchar(255), 
-	primary key (OrderNumber)
+CREATE TABLE books (
+	ISBN bigint not null, 
+	title varchar(255), 
+	authors authors ARRAY[], 
+	year int, 
+	price DOUBLE, 
+	genre varchar(255), 
+	primary key (isbn)
 )
+
+CREATE TABLE authors (
+	name varchar(255), 
+	birthday varchar(255), 
+	primary key (name)
+)
+ 

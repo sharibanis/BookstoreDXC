@@ -5,7 +5,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface NACERepository extends JpaRepository<NACE, Long> {
+public interface BooksRepository extends JpaRepository<Books, Long> {
 
+    @Query("SELECT b FROM Books b WHERE b.title = ?1 OR b.authors = ?2")
+    Books findByTitleOrAuthor(String title, String author);
 
 }
