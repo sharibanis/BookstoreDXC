@@ -17,4 +17,4 @@ Bookstore REST API for DXC Assessment
 	b. This would run the app on tomcat on localhost:8080
 	d. Use a REST client like Swagger or Postman to access the service
 7. To skip tests and run use: `mvn -DskipTests clean package && mvn -DskipTests spring-boot:run`
-8. The API is documented using SpringDoc. It is running at http://localhost:8080/api-docs
+8. The API is documented using SpringDoc. It is running at http://localhost:8080/swagger-ui/index.html

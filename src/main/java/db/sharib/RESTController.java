@@ -9,11 +9,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
+
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@Tag(name = "Bookstore API", description = "Bookstore API for managing books and authors")
 @RestController("/bookstore")
 public class RESTController {
 	private final BooksRepository booksRepository;
@@ -26,6 +30,7 @@ public class RESTController {
 	}
 	
 	//Add a new book
+	@Tag(name = "Add a new book")
 	@PostMapping("/addBook")
 	@PreAuthorize("hasAuthority('ADMIN')")
 	Books addBook(@RequestBody Books newBook) {
@@ -34,6 +39,7 @@ public class RESTController {
 	}
 
 	//Update an existing book
+	@Tag(name = "Update an existing book or create a new book if it doesn't exist")
 	@PutMapping("/{ISBN}")
 	@PreAuthorize("hasAuthority('ADMIN')")
 	Books updateBook(@RequestBody Books newBook, @PathVariable Long ISBN) {
@@ -53,7 +59,7 @@ public class RESTController {
 			});
 	}
 
-	//Find books either by title or author name or both 
+	@Tag(name = "Find books either by title or author name or both")
 	@GetMapping("/public/find")
 	Books findBook(@RequestParam(required = false) String title, 
 					@RequestParam(required = false) String author) {
@@ -69,7 +75,7 @@ public class RESTController {
 		return foundBook; 
 	}
 
-	//Delete a book by ISBN
+	@Tag(name = "Delete a book by ISBN, throws 404 if book not found")
 	@DeleteMapping("/{ISBN}")
 	@PreAuthorize("hasAuthority('ADMIN')")
     public void delete(@PathVariable Long ISBN) {
