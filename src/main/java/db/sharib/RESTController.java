@@ -7,37 +7,29 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-
-import java.util.Optional;
-
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @RestController("/bookstore")
 public class RESTController {
-	private final AuthorsRepository authRepository;
 	private final BooksRepository booksRepository;
 	//@Autowired
 	//private RESTService restService;
 	private static final Logger log = LoggerFactory.getLogger(RESTController.class);
 	
 	public RESTController(AuthorsRepository authRepository, BooksRepository booksRepository)  {
-		this.authRepository = authRepository;
 		this.booksRepository = booksRepository;
 	}
 	
 	//Add a new book
-	@PostMapping
+	@PostMapping("/addBook")
 	@PreAuthorize("hasAuthority('ADMIN')")
 	Books addBook(@RequestBody Books newBook) {
+		log.info("Adding new book: {}", newBook.getTitle());
 		return booksRepository.save(newBook);
 	}
 
@@ -45,6 +37,7 @@ public class RESTController {
 	@PutMapping("/{ISBN}")
 	@PreAuthorize("hasAuthority('ADMIN')")
 	Books updateBook(@RequestBody Books newBook, @PathVariable Long ISBN) {
+		log.info("Updating book with ISBN: {}", ISBN);
 		return booksRepository.findById(ISBN)
 			.map(book -> {
 				book.setTitle(newBook.getTitle());
@@ -55,22 +48,36 @@ public class RESTController {
 				return booksRepository.save(book);
 			})
 			.orElseGet(() -> {
+				log.info("Book with ISBN {} not found, creating new book", ISBN);
 				return booksRepository.save(newBook);
 			});
 	}
 
 	//Find books either by title or author name or both 
-	@GetMapping("/find")
+	@GetMapping("/public/find")
 	Books findBook(@RequestParam(required = false) String title, 
 					@RequestParam(required = false) String author) {
-		
-		return booksRepository.findByTitleOrAuthor(title, author);
+		log.info("Finding books with title: {} and author: {}", title, author);
+		Books foundBook = booksRepository.findByTitleOrAuthor(title, author);
+		if (foundBook == null) {
+			log.warn("No books found with title: {} and author: {}", title, author);
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No books found with title: " 
+			+ title + " and author: " + author);
+		}
+		log.info("Found books with title: {} and author: {}", foundBook.getTitle(), 
+					foundBook.getAuthors());
+		return foundBook; 
 	}
 
 	//Delete a book by ISBN
 	@DeleteMapping("/{ISBN}")
 	@PreAuthorize("hasAuthority('ADMIN')")
     public void delete(@PathVariable Long ISBN) {
-        booksRepository.deleteById(ISBN);
-    }
+		log.info("Deleting book with ISBN: {}", ISBN);
+		if (!booksRepository.existsById(ISBN)) {
+			log.warn("Book with ISBN {} not found for deletion", ISBN);
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Book with ISBN " + ISBN + " not found");
+		}
+		booksRepository.deleteById(ISBN);
+	}
 }

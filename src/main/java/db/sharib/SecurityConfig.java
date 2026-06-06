@@ -16,16 +16,15 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity
 public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .csrf(csrf -> csrf.disable()) // Disable CSRF for stateless REST APIs
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/bookstore/find").permitAll() // Public endpoint
-                .requestMatchers("/bookstore").hasRole("ADMIN") // Admin only
-                .requestMatchers("/bookstore").authenticated() // Any authenticated user
+                .requestMatchers("/bookstore/public/**", "/actuator/health").permitAll() // Public endpoint
+                //.requestMatchers("/bookstore").hasRole("ADMIN") // Admin only
+                //.requestMatchers("/bookstore").authenticated() // Any authenticated user
                 .anyRequest().authenticated() // All other endpoints require auth
             )
             .httpBasic(Customizer.withDefaults()); // Enable HTTP Basic Authentication
