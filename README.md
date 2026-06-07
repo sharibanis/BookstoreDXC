@@ -20,6 +20,11 @@ Bookstore REST API for DXC Assessment
 9. The API is documented using SpringDoc. It is running at http://localhost:8080/swagger-ui/index.html
 10. The username is `user` and password `password`
 
+# Spring Boot Actuator
+Spring Boot Actuator is at: `http://localhost:8080/actuator/health` \
+The response is as:
+<img width="1625" height="920" alt="image" src="https://github.com/user-attachments/assets/d163bcce-d78b-41dd-80fe-4d747041b521" />
+
 # Use cases and Tests
 # Add a new book
 ## Invalid ISBN
