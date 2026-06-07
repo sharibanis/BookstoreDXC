@@ -9,19 +9,20 @@ Bookstore REST API for DXC Assessment
 	`authors.csv.filePathAndName=C:\git\BookstoreDXC\src\main\resources\authors.csv`\
 	d. The activities are performed using HTTP methods e.g. @PostMapping i.e. HTTP POST using the `addBook()` method \
 	e. The endpoint for this method is `/bookstore/addBook`
-4. Java based H2 in-memory database is used to store and process data 
-5. The unit tests are written in JUnit using @SpringBootTest
-6. To build and test the application, run the maven build with the `mvn clean test` goal.
-7. The application can be run by \
+3. Java based H2 in-memory database is used to store and process data 
+4. The unit tests are written in JUnit using @SpringBootTest
+5. To build and test the application, run the maven build with the `mvn clean test` goal.
+6. The application can be run by \
 	a. To run the application, run the maven build with the `mvn clean spring-boot:run` goal \
 	b. This would run the app on tomcat on localhost:8080 \
 	c. Use a REST client like Swagger or Postman to access the service
-8. To skip tests and run use: `mvn -DskipTests clean package && mvn -DskipTests spring-boot:run`
-9. The API is documented using SpringDoc. It is running at http://localhost:8080/swagger-ui/index.html
+7. To skip tests and run use: `mvn -DskipTests clean package && mvn -DskipTests spring-boot:run`
+8. The API is documented using SpringDoc. It is running at http://localhost:8080/swagger-ui/index.html
 
-	<img width="1920" height="1128" alt="image" src="https://github.com/user-attachments/assets/4cf25e47-f5b4-49b0-a679-e5adc6b881fa" />
+<img width="1920" height="1128" alt="image" src="https://github.com/user-attachments/assets/7a678976-c049-46aa-8ac5-47b89658a98d" />
 
-10. The username is `user` and password `password`
+9. The username is `user` and password `password`
+10. The find books endpoint is `/bookstore/public/find`. It is a public endpoint. All other endpoints are protected and need successful authentication to access them.
 11. The API is protected using Spring Security with HTTP Basic Authentication
 12. `AuthenticationEvents` monitors all the authentication events
 
