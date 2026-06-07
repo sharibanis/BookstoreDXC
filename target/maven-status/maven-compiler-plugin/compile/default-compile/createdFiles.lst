@@ -1,9 +1,0 @@
-bookstore\sharib\InitAndLoadDatabase.class
-bookstore\sharib\BooksRepository.class
-bookstore\sharib\AuthenticationEvents.class
-bookstore\sharib\Authors.class
-bookstore\sharib\Books.class
-bookstore\sharib\SecurityConfig.class
-bookstore\sharib\BookstoreApplication.class
-bookstore\sharib\RESTController.class
-bookstore\sharib\AuthorsRepository.class
