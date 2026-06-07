@@ -1,19 +1,11 @@
 package db.sharib;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -32,8 +24,8 @@ public class Books {
 	  @JoinColumn(name = "book_isbn")  // creates foreign key in Authors table
 	  private List<Authors> authors = new ArrayList<>();*/
 	  @Column(name="authors")
-	  private String authors;
-	  @Column(name="yearPublished") 	
+	  private List<String> authors; //JSON Array of author names, e.g. ["Author1", "Author2"]
+	  @Column(name="yearPublished") 
 	  private int yearPublished;
 	  @Column(name="price") 	
 	  private double price;
@@ -45,7 +37,7 @@ public class Books {
 	  Books() {
 	  }
 
-	  Books(long isbn, String title, String authors, int yearPublished, double price, String genre) {
+	  Books(long isbn, String title, List<String> authors, int yearPublished, double price, String genre) {
 	    this.isbn = isbn;
 	    this.title = title;
 	    this.authors = authors;
@@ -71,11 +63,11 @@ public class Books {
 		  this.title = title;
 	  }
 
-	  public String getAuthors() {
+	  public List<String> getAuthors() {
 		  return authors;
 	  }
 
-	  public void setAuthors(String authors) {
+	  public void setAuthors(List<String> authors) {
 		  this.authors = authors;
 	  }
 
@@ -109,7 +101,7 @@ public class Books {
 
 	@Override
 	public String toString() {
-		return "Books [isbn=" + isbn + ", title=" + title + ", authors=" + 	authors.toString()
+		return "Books [isbn=" + isbn + ", title=" + title + ", authors=" + authors.toString()
 			 + ", yearPublished=" + yearPublished + ", price="+ price + ", genre=" + genre + "]";
 	}
 }

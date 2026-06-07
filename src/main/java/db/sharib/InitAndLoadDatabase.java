@@ -2,6 +2,10 @@ package db.sharib;
 
 import java.io.File;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -108,15 +112,17 @@ public class InitAndLoadDatabase implements CommandLineRunner {
 							book.setIsbn(Long.valueOf(isbn));
 							String title = line[1].trim();
 							book.setTitle(title);
-							/*List<Authors> authors = new ArrayList<Authors>();
-							String authName = line[2].trim().substring(1).split(",")[0].
-												trim().substring(0, maxStringLength);
-							authors.get(0).setName(authName);
-							String authBirthday = line[2].trim().substring(1).split(",")[1].
-												trim().substring(0, maxStringLength);
-							authors.get(0).setBirthday(authBirthday);
-							book.setAuthors(authors);*/
-							String authors = line[2].trim();
+							List<String> authors = new ArrayList<String>();
+							JSONArray jsonArray = new JSONArray(line[2].trim());
+							for (int i = 0; i < jsonArray.length(); i++) {
+								String authorName = jsonArray.getString(i);
+								if (authorName != null) {
+									authors.add(authorName);
+								} else {
+									log.warn("Author name is null in JSON array for book: " + lineString);
+								}
+							}
+							log.info("Authors: " + authors.toString());
 							book.setAuthors(authors);
 							int year = Integer.valueOf(line[3].trim());
 							book.setYearPublished(year);
