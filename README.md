@@ -1,14 +1,14 @@
 # BookstoreDXC
 Bookstore REST API for DXC Assessment 
 1. The solution is based on Java 20/Maven/SpringBoot REST API/H2 SQL DB
-2. The REST service is built upon Springboot 
-	a. The application automatically uploads the books.csv and authors.csv data files into the H2 DB on startup
+2. The REST service is built upon Springboot\
+	a. The application automatically uploads the books.csv and authors.csv data files into the H2 DB on startup\
 	b. The books.csv path is set in `/BookstoreDXC/src/main/resources/application.properties` file as:
-	`books.csv.filePathAndName=C:\git\BookstoreDXC\src\main\resources\books.csv`
+	`books.csv.filePathAndName=C:\git\BookstoreDXC\src\main\resources\books.csv`\
 	c. The authors.csv path is set in `/BookstoreDXC/src/main/resources/application.properties` file as:
-	`authors.csv.filePathAndName=C:\git\BookstoreDXC\src\main\resources\authors.csv`
-	d. The activities are performed using HTTP methods e.g. @PostMapping i.e. HTTP POST using the addBook() method
-	e. The endpoint for this method is "/bookstore/addBook"
+	`authors.csv.filePathAndName=C:\git\BookstoreDXC\src\main\resources\authors.csv`\
+	d. The activities are performed using HTTP methods e.g. @PostMapping i.e. HTTP POST using the addBook() method\
+	e. The endpoint for this method is "/bookstore/addBook"\
 4. Java based H2 in-memory database is used to store and process data 
 5. The unit tests are written in JUnit using @SpringBootTest
 6. To build and test the application, run the maven build with the `mvn clean test` goal.
@@ -18,7 +18,7 @@ Bookstore REST API for DXC Assessment
 	d. Use a REST client like Swagger or Postman to access the service
 8. To skip tests and run use: `mvn -DskipTests clean package && mvn -DskipTests spring-boot:run`
 9. The API is documented using SpringDoc. It is running at http://localhost:8080/swagger-ui/index.html
-# Use cases
+# Use cases and Tests
 # Add a new book
 ## Invalid ISBN
 <img width="449" height="656" alt="image" src="https://github.com/user-attachments/assets/38fea116-cfad-47a6-8cc8-081b27f8485e" />
