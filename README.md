@@ -18,6 +18,9 @@ Bookstore REST API for DXC Assessment
 	c. Use a REST client like Swagger or Postman to access the service
 8. To skip tests and run use: `mvn -DskipTests clean package && mvn -DskipTests spring-boot:run`
 9. The API is documented using SpringDoc. It is running at http://localhost:8080/swagger-ui/index.html
+
+	<img width="1920" height="1128" alt="image" src="https://github.com/user-attachments/assets/4cf25e47-f5b4-49b0-a679-e5adc6b881fa" />
+
 10. The username is `user` and password `password`
 11. The API is protected using Spring Security with HTTP Basic Authentication
 12. `AuthenticationEvents` monitors all the authentication events
