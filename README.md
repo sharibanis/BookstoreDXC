@@ -12,13 +12,15 @@ Bookstore REST API for DXC Assessment
 4. Java based H2 in-memory database is used to store and process data 
 5. The unit tests are written in JUnit using @SpringBootTest
 6. To build and test the application, run the maven build with the `mvn clean test` goal.
-7. The application can be run by 
-	a. To run the application, run the maven build with the `mvn clean spring-boot:run` goal
-	b. This would run the app on tomcat on localhost:8080
-	d. Use a REST client like Swagger or Postman to access the service
+7. The application can be run by \
+	a. To run the application, run the maven build with the `mvn clean spring-boot:run` goal \
+	b. This would run the app on tomcat on localhost:8080 \
+	c. Use a REST client like Swagger or Postman to access the service
 8. To skip tests and run use: `mvn -DskipTests clean package && mvn -DskipTests spring-boot:run`
 9. The API is documented using SpringDoc. It is running at http://localhost:8080/swagger-ui/index.html
 10. The username is `user` and password `password`
+11. The API is protected using Spring Security with HTTP Basic Authentication
+12. AuthenticationEvents monitors all the authentication events
 
 # Spring Boot Actuator
 Spring Boot Actuator is at: `http://localhost:8080/actuator/health` \
