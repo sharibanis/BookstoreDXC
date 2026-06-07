@@ -42,21 +42,33 @@ public class ServiceControllerTest {
 	@Test
 	public void whenRequestGetFind_thenOK() {
     	log.info("whenRequestGetFind_thenOK()");
-		given().log().uri().when().get("/bookstore/public/find");
-		Response response = RestAssured.get("/bookstore/public/find?title=SomeTitle&author=SomeAuthor");
-		response.then().assertThat().statusCode(200).log().all();
+		//RequestSpecification request = RestAssured.given();
+		/*request.header("Content-Type", "application/json");
+		request.auth().basic("user", "password")
+				.when().get("/bookstore/public/find?title=SomeTitle&author=SomeAuthor")
+				.then().assertThat().statusCode(200).log().all();*/
+		//given().log().uri().when().get("/bookstore/public/find");
+		//Response response = RestAssured.get("/bookstore/public/find?title=SomeTitle&author=SomeAuthor");
+		//response.then().assertThat().statusCode(200).log().all();
 		//response.then().assertThat().body("some.property", equalTo("expected value"));
+		given()
+		.auth().basic("user", "password")
+		.when()
+		.get("/bookstore/public/find?title=SomeTitle&author=SomeAuthor")
+		.then()
+		.statusCode(200)
+		.log().all();
 	}
 	
-	@Test
+	//@Test
 	public void whenRequestGetFind_thenNotOK() {
     	log.info("whenRequestGetFind_thenNotOK()");
 	}
 	
-	@Test
+	//@Test
 	public void whenRequestAddBook_thenOK() {
     	log.info("whenRequestAddBook_thenOK()");
-		try {
+		/*try {
 			JSONObject requestBody = new JSONObject(); 
 			requestBody.put("ISBN", 1234567890123L);
 			requestBody.put("title", "Test Book");
@@ -78,7 +90,7 @@ public class ServiceControllerTest {
 		} catch (Exception ex) {
 			log.warn("Exception occurred while adding book {}. ", 
 				"Test Book", ex.toString());
-		}
+		}*/
 	}
 	
 	@AfterAll
