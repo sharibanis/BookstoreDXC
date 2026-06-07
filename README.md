@@ -7,8 +7,8 @@ Bookstore REST API for DXC Assessment
 	`books.csv.filePathAndName=C:\git\BookstoreDXC\src\main\resources\books.csv`\
 	c. The authors.csv path is set in `/BookstoreDXC/src/main/resources/application.properties` file as:
 	`authors.csv.filePathAndName=C:\git\BookstoreDXC\src\main\resources\authors.csv`\
-	d. The activities are performed using HTTP methods e.g. @PostMapping i.e. HTTP POST using the addBook() method\
-	e. The endpoint for this method is "/bookstore/addBook"\
+	d. The activities are performed using HTTP methods e.g. @PostMapping i.e. HTTP POST using the `addBook()` method \
+	e. The endpoint for this method is `/bookstore/addBook`
 4. Java based H2 in-memory database is used to store and process data 
 5. The unit tests are written in JUnit using @SpringBootTest
 6. To build and test the application, run the maven build with the `mvn clean test` goal.
