@@ -55,8 +55,7 @@ public class InitAndLoadDatabase implements CommandLineRunner {
 					String lineString = "";
 					int insertCount = 0;
 					log.info("Uploading file: " + file.getCanonicalPath());
-					int maxStringLength = 255; //DB constraint for string length
-					Authors author = null;
+					Authors author = new Authors();
 					csvReader.readNext(); //skip first line (header)
 					while ((line = csvReader.readNext()) != null) {
 						for (String cell : line) {
@@ -98,8 +97,7 @@ public class InitAndLoadDatabase implements CommandLineRunner {
 					String lineString = "";
 					int insertCount = 0;
 					log.info("Uploading file: " + file.getCanonicalPath());
-					int maxStringLength = 255; //DB constraint for string length
-					Books book = null;
+					Books book = new Books();
 					csvReader.readNext(); //skip first line (header)
 					while ((line = csvReader.readNext()) != null) {
 						for (String cell : line) {
