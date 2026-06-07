@@ -20,7 +20,7 @@ Bookstore REST API for DXC Assessment
 9. The API is documented using SpringDoc. It is running at http://localhost:8080/swagger-ui/index.html
 10. The username is `user` and password `password`
 11. The API is protected using Spring Security with HTTP Basic Authentication
-12. AuthenticationEvents monitors all the authentication events
+12. `AuthenticationEvents` monitors all the authentication events
 
 # Spring Boot Actuator
 Spring Boot Actuator is at: `http://localhost:8080/actuator/health` \
