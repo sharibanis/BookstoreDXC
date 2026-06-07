@@ -1,4 +1,4 @@
-package db.sharib;
+package bookstore.sharib;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

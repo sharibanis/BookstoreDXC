@@ -1,4 +1,4 @@
-package db.sharib;
+package bookstore.sharib;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

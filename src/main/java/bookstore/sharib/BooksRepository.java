@@ -1,4 +1,4 @@
-package db.sharib;
+package bookstore.sharib;
 
 import java.util.List;
 

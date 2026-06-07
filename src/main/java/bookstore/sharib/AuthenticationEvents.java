@@ -1,4 +1,4 @@
-package db.sharib;
+package bookstore.sharib;
 
 import org.springframework.context.event.EventListener;
 import org.springframework.security.authentication.event.AuthenticationFailureBadCredentialsEvent;

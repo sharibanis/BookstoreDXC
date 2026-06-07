@@ -1,4 +1,4 @@
-package db.sharib;
+package bookstore.sharib;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterAll;
@@ -14,6 +14,8 @@ import io.restassured.specification.RequestSpecification;
 import static io.restassured.RestAssured.given;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
+
+import bookstore.sharib.BookstoreApplication;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT,
 	classes = BookstoreApplication.class

@@ -1,4 +1,4 @@
-package db.sharib;
+package bookstore.sharib;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
