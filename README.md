@@ -23,7 +23,7 @@ Bookstore REST API for DXC Assessment
 
 9. The username is `user` and password `password`
 10. The find books endpoint is `/bookstore/public/find`. It is a public endpoint. All other endpoints are protected and need successful authentication to access them.
-11. The API is protected using Spring Security with HTTP Basic Authentication
+11. The API is protected using Spring Security with HTTP Basic Authentication. It is configured in `SecurityConfig` class.
 12. `AuthenticationEvents` monitors all the authentication events
 
 # Spring Boot Actuator
