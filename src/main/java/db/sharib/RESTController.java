@@ -14,8 +14,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.Arrays;
 import java.util.List;
-import org.json.JSONArray;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.slf4j.Logger;
@@ -58,13 +56,7 @@ public class RESTController {
 			log.warn("Authors field is empty for book: {}", newBook.toString());
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Authors field cannot be empty");
 		}
-		JSONArray jsonArray = new JSONArray(authors);
-		String authorsString = jsonArray.toString();
-		log.info("Authors as JSON array: {}", authorsString);
-		if (!authorsString.startsWith("[") || !authorsString.endsWith("]")) {
-			log.warn("Authors field is not a valid JSON array for book: {}", newBook.toString());
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Authors field must be a valid JSON array of author names");
-		}
+		log.info("authors.toString(): {}", authors.toString());
 		int yearPublished = newBook.getYearPublished();
 		if (yearPublished < 0 || yearPublished > 9999) {
 			log.warn("Year Published field is invalid for book: {}", newBook.toString());
@@ -108,13 +100,7 @@ public class RESTController {
 			log.warn("Authors field is empty for book: {}", newBook.toString());
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Authors field cannot be empty");
 		}
-		JSONArray jsonArray = new JSONArray(authors);
-		String authorsString = jsonArray.toString();
-		log.info("Authors as JSON array: {}", authorsString);
-		if (!authorsString.startsWith("[") || !authorsString.endsWith("]")) {
-			log.warn("Authors field is not a valid JSON array for book: {}", newBook.toString());
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Authors field must be a valid JSON array of author names. e.g. [\"Author1\", \"Author2\"]");
-		}
+		log.info("authors.toString(): {}", authors.toString());
 		int yearPublished = newBook.getYearPublished();
 		if (yearPublished < 0 || yearPublished > 9999) {
 			log.warn("Year Published field is invalid for book: {}", newBook.toString());
