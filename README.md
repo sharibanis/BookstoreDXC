@@ -32,6 +32,13 @@ The response is as:
 <img width="1625" height="920" alt="image" src="https://github.com/user-attachments/assets/d163bcce-d78b-41dd-80fe-4d747041b521" />
 
 # Use cases and Tests
+## Integration Tests
+Integration tests were done using Junit from a separate client app (BookstoreDXCTestingClient). 
+The test results are shown below:
+<img width="1920" height="1128" alt="image" src="https://github.com/user-attachments/assets/4a0a3343-eb4f-4685-a341-f0f8263c45ef" />
+
+# Manual Tests
+Manual Tests were done using OpenAPI. Test results are below.
 # Add a new book
 ## Invalid ISBN
 <img width="449" height="656" alt="image" src="https://github.com/user-attachments/assets/38fea116-cfad-47a6-8cc8-081b27f8485e" />
