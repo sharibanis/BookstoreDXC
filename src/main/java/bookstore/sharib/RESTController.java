@@ -87,7 +87,7 @@ public class RESTController {
 		}
 		long isbn = newBook.getIsbn();
 		if ((isbn <= 0) || (String.valueOf(isbn).length() != 13 || (isbn != ISBN))) {
-			log.warn("ISBN field is invalid for book: {}", newBook.toString());
+			log.warn("isbn field is invalid for book: {}", newBook.toString());
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "ISBN field in the body must be a 13-digit number. And match the ISBN in the path variable.");
 		}
 		String title = newBook.getTitle();
