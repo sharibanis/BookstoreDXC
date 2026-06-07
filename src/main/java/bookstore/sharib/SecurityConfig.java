@@ -22,7 +22,7 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable()) // Disable CSRF for stateless REST APIs
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/bookstore/public/**", "/actuator/health").permitAll() // Public endpoint
+                .requestMatchers("/bookstore/public/find/**", "/actuator/health").permitAll() // Public endpoint
                 .requestMatchers("/bookstore").hasRole("ADMIN") // Admin only
                 .requestMatchers("/bookstore").authenticated() // Any authenticated user
                 .anyRequest().authenticated() // All other endpoints require auth
