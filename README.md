@@ -11,12 +11,12 @@ Bookstore REST API for DXC Assessment
 	e. The endpoint for this method is `/bookstore/addBook`
 3. Java based H2 in-memory database is used to store and process data 
 4. The unit tests are written in JUnit using @SpringBootTest
-5. To build and test the application, run the maven build with the `mvn clean test` goal.
+5. Logging levels and other settings can be changed in `C:\git\BookstoreDXC\src\main\resources\application.properties` file
 6. The application can be run by \
 	a. To run the application, run the maven build with the `mvn clean spring-boot:run` goal \
 	b. This would run the app on tomcat on localhost:8080 \
 	c. Use a REST client like Swagger or Postman to access the service
-7. To skip tests and run use: `mvn -DskipTests clean package && mvn -DskipTests spring-boot:run`
+7. The best way to Integration test the application is by running the client app: BookstoreDXCTestingClient found at https://github.com/sharibanis/BookstoreDXCTestingClient.git
 8. The API is documented using SpringDoc. It is running at http://localhost:8080/swagger-ui/index.html
 
 <img width="1920" height="1128" alt="image" src="https://github.com/user-attachments/assets/7a678976-c049-46aa-8ac5-47b89658a98d" />
@@ -24,7 +24,7 @@ Bookstore REST API for DXC Assessment
 9. The username is `user` and password `password`
 10. The find books endpoint is `/bookstore/public/find`. It is a public endpoint. All other endpoints are protected and need successful authentication to access them.
 11. The API is protected using Spring Security with HTTP Basic Authentication. It is configured in `SecurityConfig` class.
-12. `AuthenticationEvents` monitors all the authentication events
+12. `AuthenticationEvents` monitors and logs all the authentication events
 
 # Spring Boot Actuator
 Spring Boot Actuator is at: `http://localhost:8080/actuator/health` \
