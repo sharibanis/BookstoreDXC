@@ -23,7 +23,7 @@ Bookstore REST API for DXC Assessment
 
 9. The username is `user` and password `password`
 10. The find books endpoint is `/bookstore/public/find`. It is a public endpoint. All other endpoints are protected and need successful authentication to access them.
-11. The API is protected using Spring Security with HTTP Basic Authentication
+11. The API is protected using Spring Security with HTTP Basic Authentication. It is configured in `SecurityConfig` class.
 12. `AuthenticationEvents` monitors all the authentication events
 
 # Spring Boot Actuator
@@ -41,14 +41,14 @@ The test results are shown below:
 Manual Tests were done using OpenAPI. Test results are below.
 # Add a new book
 ## Invalid ISBN
-<img width="449" height="656" alt="image" src="https://github.com/user-attachments/assets/38fea116-cfad-47a6-8cc8-081b27f8485e" />
+<img width="571" height="640" alt="image" src="https://github.com/user-attachments/assets/3b991fb9-c899-4a10-acd1-d0f34b72137d" />
 
 <img width="631" height="296" alt="image" src="https://github.com/user-attachments/assets/c86dcda7-7ac8-492d-b55c-42f06f7ebd63" />
 
 Server log: `ISBN field is invalid for book: Books [isbn=0, title=string, authors=[string], yearPublished=0, price=0.1, genre=string]`
 
 # Trying to add existing book
-<img width="573" height="636" alt="image" src="https://github.com/user-attachments/assets/d0a4aae5-c23d-49d6-bc4c-d5cbed4ca96e" />
+<img width="533" height="629" alt="image" src="https://github.com/user-attachments/assets/92df781e-7307-4b10-a8ef-1c0a3cdfa80c" />
 
 <img width="669" height="304" alt="image" src="https://github.com/user-attachments/assets/9371f20a-b830-459f-8c02-433bf7d413f2" />
 
@@ -56,76 +56,95 @@ Server log: `Book with this ISBN already exists! Books [isbn=9780545010317, titl
 
 ## Correct Request with 1 author
 
-<img width="522" height="661" alt="image" src="https://github.com/user-attachments/assets/e8a60627-7312-4e78-bd08-792ea00fa092" />
+<img width="636" height="644" alt="image" src="https://github.com/user-attachments/assets/e9e71cf5-90b9-46e9-aa60-0c3762f8a8ae" />
 
-<img width="450" height="326" alt="image" src="https://github.com/user-attachments/assets/2ac90334-60b6-42ab-923e-a4af315d6eb7" />
+<img width="535" height="323" alt="image" src="https://github.com/user-attachments/assets/5890a116-bd31-4147-ae0b-6e5cc124f6b5" />
 
 Server log: `Added new book: Books [isbn=9780545019317, title=Title, authors=[authors], yearPublished=1110, price=110.1, genre=Fantasy]`
 
 ## Correct Request with multiple authors
-<img width="485" height="627" alt="image" src="https://github.com/user-attachments/assets/849909e1-9e6d-41c1-86c7-ebf398f0b314" />
+<img width="585" height="663" alt="image" src="https://github.com/user-attachments/assets/30197509-c5f7-4081-b440-84e989c5082b" />
 
-<img width="453" height="346" alt="image" src="https://github.com/user-attachments/assets/96df1e70-b94f-4254-8e51-9ef9fc367118" />
+<img width="478" height="338" alt="image" src="https://github.com/user-attachments/assets/7440052e-85bd-44d3-9b98-5d3b0febbcc1" />
 
-Server log: `Saving new book: Books [isbn=9780545019315, title=Title, authors=[authors1, authors2], yearPublished=1110, price=110.1, genre=Fantasy]`
+Server log: `Added new book: Books [isbn=9780545319317, title=title1, authors=[authors1, authors2], yearPublished=1110, price=110.1, genre=string]`
 
 # Update an existing book
 ## Invalid ISBN 1
-<img width="780" height="593" alt="image" src="https://github.com/user-attachments/assets/2f190a5f-ddda-45b2-a653-d2ceac91d45a" />
+<img width="801" height="797" alt="image" src="https://github.com/user-attachments/assets/8f159df5-1ffd-476d-8a46-97378b3d00fb" />
+
 <img width="567" height="246" alt="image" src="https://github.com/user-attachments/assets/b74fdc01-0360-4e35-8edd-b7ec1cf5d1a2" />
 
 Server log: `ISBN field is invalid for book: Books [isbn=111, title=string, authors=[string], yearPublished=0, price=0.1, genre=string]`
 
 ## Invalid ISBN 2
-<img width="846" height="795" alt="image" src="https://github.com/user-attachments/assets/c33c6535-3ee9-4ea0-a964-e59f3389af53" />
+<img width="759" height="772" alt="image" src="https://github.com/user-attachments/assets/331a73fc-a5a5-4f92-b87e-d25ac45ff0cd" />
+
 <img width="579" height="299" alt="image" src="https://github.com/user-attachments/assets/3a53eab1-591f-4d9e-85b5-9c196a598af9" />
 
-Server log: `isbn field is invalid for book: Books [isbn=1110, title=string, authors=[string], yearPublished=0, price=0.1, genre=string]`
+Server log: `isbn field is invalid for book: Books [isbn=111, title=string, authors=[string], yearPublished=0, price=0.1, genre=string]`
 
 ## Mismatch ISBN
-<img width="781" height="778" alt="image" src="https://github.com/user-attachments/assets/37c10bfb-7a2d-4196-945c-65eeb1e317c1" />
+<img width="820" height="778" alt="image" src="https://github.com/user-attachments/assets/7afe330a-f401-4207-bcc7-7ef68b3afa8a" />
+
 <img width="605" height="254" alt="image" src="https://github.com/user-attachments/assets/6da357d7-6e9f-4985-a468-f1f65d82cb02" />
 
 Server log: `isbn field is invalid for book: Books [isbn=9780545010316, title=string, authors=[string], yearPublished=0, price=0.1, genre=string]`
 
 ## Incorrect ISBN
-<img width="732" height="780" alt="image" src="https://github.com/user-attachments/assets/3ed1f856-800b-408e-8e25-535528487d5e" />
+<img width="817" height="791" alt="image" src="https://github.com/user-attachments/assets/b8532e23-5a0f-4c5e-be85-b053895a0cc2" />
+
 <img width="624" height="270" alt="image" src="https://github.com/user-attachments/assets/44279a83-d5c9-4c49-9553-9f7138351347" />
 
-Server log: `Book with this ISBN does not exist! Books [isbn=9780545018316, title=string, authors=[string], yearPublished=0, price=0.1, genre=string]`
+Server log: `Book with this ISBN does not exist! Books [isbn=9780545510317, title=string, authors=[string], yearPublished=0, price=0.1, genre=string]`
 ## Correct ISBN
-<img width="756" height="563" alt="image" src="https://github.com/user-attachments/assets/1d0e49f0-fa3a-40cc-9511-57edf0a3f3f7" />
-<img width="459" height="310" alt="image" src="https://github.com/user-attachments/assets/4f8dbb4c-7b4e-4377-912b-fc1b7c47fd51" />
+<img width="857" height="782" alt="image" src="https://github.com/user-attachments/assets/76246556-1dc6-4d7d-8599-b4a9b44eb43d" />
 
-` Updated book: Books [isbn=9780545010316, title=Title, authors=[Author1], yearPublished=1110, price=110.1, genre=Fantaay]`
+<img width="541" height="367" alt="image" src="https://github.com/user-attachments/assets/4cfc0f5f-b0b9-4d5c-82be-2d55892fcf50" />
+
+`Updated book: Books [isbn=9780545010313, title=title, authors=[authors], yearPublished=1110, price=1110.1, genre=genre]`
 
 # Delete a book by ISBN, throws 404 if book not found
 ## Incorrect ISBN
-<img width="775" height="400" alt="image" src="https://github.com/user-attachments/assets/d7e5e7ba-8fa0-4806-8ce4-4b9cf4ecd986" />
-<img width="590" height="267" alt="image" src="https://github.com/user-attachments/assets/c34fb961-9b4b-41b8-b496-168d56f9278c" />
+<img width="762" height="394" alt="image" src="https://github.com/user-attachments/assets/93ab0dfb-ec22-4517-b0d2-a1d2cf461c86" />
 
-Server log: `Book with ISBN 9780545010411 not found for deletion`
+<img width="622" height="302" alt="image" src="https://github.com/user-attachments/assets/d643d2e7-38e2-48b4-a50f-cefd1845a786" />
+
+Server log: `Book with ISBN 9780545510313 not found for deletion`
 ## Correct ISBN
-<img width="740" height="369" alt="image" src="https://github.com/user-attachments/assets/ad7aeb80-3767-40bb-81a1-33f6f095d018" />
+<img width="784" height="396" alt="image" src="https://github.com/user-attachments/assets/d982e11b-eb0c-40e5-9583-96ccabd1e450" />
 
-<img width="813" height="338" alt="image" src="https://github.com/user-attachments/assets/9babd654-b609-473e-9219-1538d76c4384" />
+<img width="827" height="381" alt="image" src="https://github.com/user-attachments/assets/739c79f8-ae88-4d22-8d79-1a82b38d108c" />
 
 Server log: `Deleted book with ISBN: 9780545010316`
 
 # Find books either by title or author name or both
-<img width="738" height="463" alt="image" src="https://github.com/user-attachments/assets/b8fc87fc-7ea2-44bf-b26d-b657f9864dd1" />
-<img width="614" height="292" alt="image" src="https://github.com/user-attachments/assets/02b46a79-7840-4b33-b089-ae14ada6ee06" />
+## Incorrect Title
+<img width="857" height="477" alt="image" src="https://github.com/user-attachments/assets/23829cd9-a16d-46f8-a187-59a054e8e949" />
+<img width="642" height="257" alt="image" src="https://github.com/user-attachments/assets/58447865-d808-46fe-a357-69e849ab5734" />
+
 Server log: `No books found with title: Harper Lee and author: null`
+## Correct Title
+<img width="829" height="477" alt="image" src="https://github.com/user-attachments/assets/f3fbfcaf-f2a4-495e-a4e0-c0be00cc70bd" />
+<img width="634" height="355" alt="image" src="https://github.com/user-attachments/assets/491190d4-1d2c-4c67-a259-a0ff43fbf0a8" />
 
-<img width="733" height="465" alt="image" src="https://github.com/user-attachments/assets/50ea8a13-8e7f-43c5-a688-2f208f2362e0" />
-<img width="562" height="325" alt="image" src="https://github.com/user-attachments/assets/f524ab7e-6eae-447b-b6a2-8bfe6ceab76e" />
+Server log: `Found book Books [isbn=9780060935467, title=To Kill a Mockingbird, authors=[Harper Lee], yearPublished=1960, price=9.99, genre=Classic Fiction] with title: To Kill a Mockingbird and author: [Harper Lee]`
+## Incorrect Author
+<img width="836" height="487" alt="image" src="https://github.com/user-attachments/assets/6f6cb845-2677-4169-ab70-cec28b366d8d" />
+<img width="672" height="299" alt="image" src="https://github.com/user-attachments/assets/540c37cf-fb42-4d46-8399-b6ed0d90281c" />
+
+Server log: `No books found with title: null and author: Correct Title`
+## Correct Author
+<img width="851" height="473" alt="image" src="https://github.com/user-attachments/assets/f2e023d4-b9b2-4595-b323-17a9290b3ec4" />
+<img width="586" height="358" alt="image" src="https://github.com/user-attachments/assets/6e3f406a-6f8f-4bde-ba19-72d143d54f4e" />
 
 Server log: `Found book Books [isbn=9780060935467, title=To Kill a Mockingbird, authors=[Harper Lee], yearPublished=1960, price=9.99, genre=Classic Fiction] with title: To Kill a Mockingbird and author: [Harper Lee]`
 
-<img width="763" height="476" alt="image" src="https://github.com/user-attachments/assets/a366e6db-dcc5-4ce5-9d47-c3d1d89326b2" />
-
-<img width="616" height="370" alt="image" src="https://github.com/user-attachments/assets/2bedbe5e-43c7-43e2-81fc-544d426876b9" />
+## Correct Title and Author
+<img width="909" height="463" alt="image" src="https://github.com/user-attachments/assets/34bf4d61-5234-48b4-8192-e40c47d01f2e" />
+<img width="531" height="367" alt="image" src="https://github.com/user-attachments/assets/f9495b31-3d5d-4842-900a-16ffb05c893a" />
 
 Server log: `Found book Books [isbn=9780060935467, title=To Kill a Mockingbird, authors=[Harper Lee], yearPublished=1960, price=9.99, genre=Classic Fiction] with title: To Kill a Mockingbird and author: [Harper Lee]`
+
 
 
