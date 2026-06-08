@@ -25,8 +25,6 @@ import org.slf4j.LoggerFactory;
 @RequestMapping("/bookstore")
 public class RESTController {
 	private final BooksRepository booksRepository;
-	//@Autowired
-	//private RESTService restService;
 	private static final Logger log = LoggerFactory.getLogger(RESTController.class);
 	
 	public RESTController(AuthorsRepository authRepository, BooksRepository booksRepository)  {
